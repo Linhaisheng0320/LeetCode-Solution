@@ -21,9 +21,8 @@
 //思路：
 //创建一个ListNode用于接收
 //创建一个进位的变量
-//
-
-
+//合除以10，就是进位数
+//而当前ListNode的位数为取余 %10
 
 
 struct ListNode {
@@ -35,8 +34,8 @@ struct ListNode {
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode head(0);
-        ListNode *p = &head;
+        ListNode head(0);      //头指向0为了方便while循环
+        ListNode *p = &head; //用于直接得到答案。
         int carry = 0; //进位数字
 
         while (l1 || l2 || carry) {

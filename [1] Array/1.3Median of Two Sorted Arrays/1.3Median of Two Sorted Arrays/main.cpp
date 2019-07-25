@@ -21,50 +21,50 @@ public:
             return medianArray(nums1);
         }
 
-        int length = nums1.size() + nums1.size();
-        int flag =  (length & 0) == 0;
-        int mind  = length/2;
-        int j = 0,k = 0;
-        int a = 0,b = 0;
-        vector<int> medianNum;
+        int a=0;
+        int x=0;
+        int b=0;
+        int y=0;
+        vector<int> nums;
+        int length = nums1.size() + nums2.size();
+        int mind = length/2;
+        int flat = (length&1) == 0;
+        for (int i = 0;i <= mind ; i++){
+            a = x < nums1.size() ? nums1[x] : INT_MAX;
+            b = y < nums2.size() ? nums2[y] : INT_MAX;
 
-
-        for (int i = 0;i < length; i++){
-            a = j < nums1.size() ? nums1[j] : INT_MAX;
-            b = k < nums2.size() ? nums2[k] : INT_MAX;
             if (a < b){
-                medianNum.push_back(a);
-                j++;
-
+                x++;
+                nums.push_back(a);
             }else{
-                medianNum.push_back(b);
-                k++;
-            }
-
-            if(i == mind){
-                break;
+                y++;
+                nums.push_back(b);
             }
         }
 
-        return ((medianNum[mind] + medianNum[mind-flag])/2.0);
+        return (nums[mind]+nums[mind-flat])/2.0;
     }
 
     double medianArray(vector<int>& nums){
-        if (nums.size() > 0){
-            int flag = (nums.size() & 0)==0;
-            int median = nums.size()/2;
-            return ((nums[median] + nums[median-flag])/2);
-        }else{
-            return 0;
+        if (nums.size() == 1){
+            return nums[0];
         }
-    };
+
+        if (nums.size() > 0){
+            int flat = (nums.size()&1) == 0;;
+            int mind = nums.size()/2;
+
+            return  (nums[mind]+nums[mind-flat])/2.0;
+        }
+        return 0.0;
+    }
 };
 
 
 
 int main(int argc, const char * argv[]) {
-    vector<int> num1 = {1,2};
-    vector<int> num2 = {2,3,6};
+    vector<int> num1 = {1,3};
+    vector<int> num2 = {2};
     Solution s;
     auto num = s.findMedianSortedArrays(num1, num2);
     // insert code here...
